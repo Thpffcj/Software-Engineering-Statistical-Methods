@@ -23,7 +23,8 @@ degrees. We are interested in determining whether these data provide strong evid
 （5）我们可能会犯什么类型的错误？
 （6）根据这个假设检验的结果，你会期望1968年和2008年的温度测量值之间的平均差异的置信区间为0？解释|没有
 [degree-of-freedom-of-distribution, statistical values, conclusion]
-'''
+
+
 from scipy import stats
 import math
 
@@ -41,6 +42,19 @@ class Solution():
 		list = [distribution, values, flag]
 		print list
 		return list
+'''
+
+import numpy as np
+from scipy.stats import t
+
+class Solution():
+    def solve(self):
+        de=t.ppf(0.05,50)
+        result=(1.1-0)/(4.9/(np.sqrt(51)))
+        if de<=result:
+            return [round(50,2),round(result,2),True]
+        else:
+            return [round(50,2),round(result,2),False]
 
 if __name__ == '__main__':
 	s = Solution()

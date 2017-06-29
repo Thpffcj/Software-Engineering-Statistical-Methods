@@ -4,18 +4,16 @@
 这是从3600份问卷统计得到的结果。另外报告指出，中国人睡眠时长符合方差为25的正态分布，试写solve函数估计中国人睡眠时长的置信
 区间(置信水平为95%)
 '''
-import math
+import numpy as np
+from scipy.stats import norm
 
 class Solution:
     def solve(self):
-        average = 8.5
-        variance = 25
-        n = 3600
-        z = 1.96
-        low = average - z * math.sqrt(variance) / math.sqrt(n)
-        high = average + z * math.sqrt(variance) / math.sqrt(n)
-        list = [low, high]
-        return list
+        de = norm.ppf(0.025)
+        lower = 8.5+5/np.sqrt(3600)*de
+        upper = 8.5-5/np.sqrt(3600)*de
+        return [lower,upper]
 
 if __name__ == '__main__':
-    s = Solution()
+    S = Solution()
+    print S.solve()
