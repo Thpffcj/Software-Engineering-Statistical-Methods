@@ -8,7 +8,7 @@ satisfied. Use the t-distribution in any calculations.
 满意。 在任何计算中使用t分布。
 '''
 
-from scipy.stats import t
+from scipy import stats
 import numpy as np
 
 class Solution():

@@ -12,10 +12,13 @@ Output Description
 plot_num, int type
 '''
 
+from scipy.stats import norm
+import numpy as np
 
 class Solution():
 	def solve(self):
-		pass
+		de = norm.ppf(0.975)
+		print de
 
 if __name__ == '__main__':
     s = Solution()

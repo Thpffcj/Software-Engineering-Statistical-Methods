@@ -21,23 +21,32 @@ decimal place, 'conclusion' is True, which means the H0 is accepted, or False
 [degree-of-freedom-of-distribution, statistical values, conclusion]
 [分配度，统计值，结论]，“分配自由度”和“统计值”精确到第二位小数，“结论”为True，这意味着 H0被接受，或者是False
 '''
-from scipy import stats
-import math
+import numpy as np
+from scipy.stats import t
 
 class Solution():
 	def solve(self):
-		z = stats.t(19)
-		average = 4.6
-		s = 2.2
-		distribution = -round(-z.ppf(0.05), 2)
-		values = round((4.6-5)/(2.2/math.sqrt(20)), 2)
-		if values <= distribution:
-			flag = False
+#		z = stats.t(19)
+#		average = 4.6
+#		s = 2.2
+#		distribution = -round(-z.ppf(0.05), 2)
+#		values = round((4.6-5)/(2.2/math.sqrt(20)), 2)
+#		if values <= distribution:
+#			flag = False
+#		else:
+#			flag = True
+#		list = [distribution, values, flag]
+#		print list
+#		return list
+		de = t.ppf(0.95, 19)
+		print de
+		result = (4.6 - 5) / (2.2 / np.sqrt(20))
+		if result >= de:
+			print [round(19, 2), round(result, 2), True]
+			return [round(19, 2), round(result, 2), True]
 		else:
-			flag = True
-		list = [distribution, values, flag]
-		print list
-		return list
+			print [round(19, 2), round(result, 2), False]
+			return [round(19, 2), round(result, 2), False]
 
 
 if __name__ == '__main__':
