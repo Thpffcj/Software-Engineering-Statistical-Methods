@@ -1,5 +1,6 @@
 #encoding=utf-8
 import numpy as np
+from numpy.linalg import *
 
 def main():
     lst = [[1,3,5],[2,4,6]]
@@ -66,6 +67,17 @@ def main():
     print(np.vstack((lst1, lst2)))
     print(np.hstack((lst1, lst2)))
     print(np.split(lst1, 4))
+
+    #4 liner
+    print(np.eye(3))
+    lst = np.array([[1,2],
+                    [3,4]])
+    print(inv(lst))
+    print(lst.transpose())
+    print(det(lst))
+    print(eig(lst))
+    y = np.array([[5.], [7.]])
+    print(solve(lst, y))
 
 if __name__ == '__main__':
     main()

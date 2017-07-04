@@ -13,17 +13,27 @@ Complete a chi-square test for test data to check whether there is a statistical
 
 import numpy as np
 from scipy.stats import chi2
+import csv
 
 class Solution():
 	def solve(self):
-		count_exp = [[154, 132], [180, 126], [104, 131]]
+		csv_reader = csv.reader(open('data36.csv'))
+		data = np.ndarray((4, 3))
+		m = 0;
+		for row in csv_reader:
+			data[m] = row
+			m = m+1
+		count_exp = [[data[0][0], data[0][1]], [data[1][0], data[1][1]], [data[2][0], data[2][1]]]
+#		print count_exp
 		count_the = np.ndarray((3, 2))
-		total_r = [286, 306, 235]
-		total_c = [438, 389]
+		total_r = [data[0][2], data[1][2], data[2][2]]
+#		print total_r
+		total_c = [data[3][0], data[3][1]]
+#		print total_c
 		for i in range(3):
 			for j in range(2):
 				count_the[i][j] = total_r[i] * total_c[j] / 827.0
-				print count_the[i][j]
+#				print count_the[i][j]
 
 		x2 = 0.0
 		for i in range(3):
