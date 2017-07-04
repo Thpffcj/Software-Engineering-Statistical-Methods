@@ -13,6 +13,7 @@ class Solution():
 	def solve(self):
 		data1 = pd.read_csv('http://py.mooctest.net:8081/dataset/temperature/temperature_2010.csv', usecols=[8])
 		data2 = pd.read_csv('http://py.mooctest.net:8081/dataset/temperature/temperature_2014.csv', usecols=[8])
+		data3 = pd.read_csv('http://py.mooctest.net:8081/dataset/temperature/temperature_2014.csv')
 #		year10 = [25.7, 25.6, 25.6, 22.4, 21.7, 23.3, 23, 22.2, 27.9, 27.2, 28.4, 27.5, 29.3, 29.4, 25.1, 26, 29.1,
 #				  29.4, 29.9, 28.8, 28.1, 28.4, 25, 23.6, 20.6, 16.4, 24.7, 18.3, 15.4, 21.3, 22.9]
 #		year14 = [27.3, 27.7, 27.9, 23.6, 20.6, 24.3, 22.6, 22.5, 31, 30.8, 31.3, 31.1, 29.6, 31.6, 28.6, 30.1, 30.6,
@@ -23,12 +24,16 @@ class Solution():
 #		temp_old_data = temp_old.read()
 #		temp_new_data = temp_new.read()
 
-		temp_old = data1.values
-		temp_new = data2.values
-		year10 = np.array(temp_old)[5:36]
-		year14 = np.array(temp_new)[4:35]
-		print year10[30]
-		print year14[30]
+		city = np.array(data3.loc[4])[1:]
+		print city
+
+#		temp_old = data1.values
+#		temp_new = data2.values
+		year10 = np.array(data1)[5:36]
+		year14 = np.array(data2)[4:35]
+		print year10
+#		print year10[30]
+#		print year14[30]
 #		print float(year14[1][0])
 		data = []
 		for i in range(31):
@@ -40,13 +45,13 @@ class Solution():
 
 		data = np.array(data)
 		m = data.mean()
-		print data
+#		print data
 
 		s = 0.0
 		for i in range(31):
 			s = s + (data[i]-m)**2
 		s = s/31.0
-		print s
+#		print s
 		result = m*np.sqrt(31)/s
 #		print result
 		de = t.ppf(0.95, 20)
