@@ -18,25 +18,32 @@ import numpy as np
 class Solution():
 	def solve(self):
 		count = [43, 21, 35]
-		averge = 0
-		for i in count:
-			averge = averge+i
-		averge = averge/3
 		x = 0.0
 		for i in range(3):
-			x += ((count[i]) ** 2) * 1.0 / (99.0/3)
+			x += ((count[i]) ** 2)  / (99.0/3)
 		x = x - 99
 		de = chi2.ppf(0.95, 2)
 		print x
 		print de
 		if x >= de:
 			print([round(2, 2), round(x, 2), False])
-			#测试用例给的答案统计量是7.51
 			return [round(2, 2), round(x, 2), False]
 		else:
 			print([round(2, 2), round(x, 2), True])
 			return [round(2, 2), round(x, 2), True]
 
+class Solution1():
+	def solve(self):
+		n = 3
+		n_i = [43, 21, 35]
+		stat_value = 0
+		avg = np.array(n_i).mean()
+		for i in n_i:
+			stat_value += (i - avg) ** 2 / avg
+		chi2_value = chi2.isf(0.05, n - 1)
+		print [round(n - 1, 2), round(stat_value, 2), not stat_value >= chi2_value]
+		return [round(n - 1, 2), round(stat_value, 2), not stat_value >= chi2_value]
+
 if __name__ == '__main__':
-    s = Solution()
-    s.solve()
+	s = Solution1()
+	s.solve()

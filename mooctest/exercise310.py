@@ -19,10 +19,12 @@ from scipy.stats import t
 
 class Solution():
 	def solve(self):
-		#Percent point function (inverse of cdf) at q of the given RV.累积分布函数的反函数。q=0.01时，ppf就是p(X<x)=0.01时的x值。
-		de = t.ppf(0.95, 24)
+		m = 7.73
+		n = 25
+		s = 0.77
+		de = t.ppf(0.95, n-1)
 		print de
-		result = (7.73-8) /(0.77/np.sqrt(25))
+		result = (m-8) /(s/np.sqrt(n))
 		print result
 		if result <= -de:
 			print([24, round(result, 2), False])

@@ -13,15 +13,27 @@ import numpy as np
 
 class Solution():
     def solve(self):
-        t = stats.t(35)
-        t1 = t.ppf(0.025)
-        print t1
-        n = 36
+        t = stats.t.ppf(0.975, 35)
+        print t
+        n = 36.0
         x = round((18.985 + 21.015) / 2, 2)
-        s = round(np.sqrt((21.015 - x) * np.sqrt(n) / t1), 2)
+        s = round(((21.015 - x) * np.sqrt(n) / t), 2)
         list = [x, s]
         print list
         return list
+
+class Solution1():
+    def solve(self):
+        lower = 18.985
+        upper = 21.015
+        mean = (lower + upper) / 2
+        delta = mean - lower
+        n = 36
+        t_value = stats.t.isf(0.025, n - 1)
+        print t_value
+        std = delta * np.sqrt(n) / t_value
+        print [round(mean, 2), round(std, 2)]
+        return [round(mean, 2), round(std, 2)]
 
 if __name__ == '__main__':
     s = Solution()

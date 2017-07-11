@@ -8,12 +8,14 @@ import numpy as np
 from scipy.stats import norm
 
 class Solution:
-    def solve(self):
-        de = norm.ppf(0.025)
-        lower = 8.5+5/np.sqrt(3600)*de
-        upper = 8.5-5/np.sqrt(3600)*de
-        return [lower,upper]
+	def solve(self):
+		m = 8.5
+		s = 5.0
+		de = norm.ppf(0.975)
+		lower = m+s/np.sqrt(3600)*de
+		upper = m-s/np.sqrt(3600)*de
+		return [lower,upper]
 
 if __name__ == '__main__':
-    S = Solution()
-    print S.solve()
+	S = Solution()
+	print S.solve()

@@ -26,27 +26,17 @@ from scipy.stats import t
 
 class Solution():
 	def solve(self):
-#		z = stats.t(19)
-#		average = 4.6
-#		s = 2.2
-#		distribution = -round(-z.ppf(0.05), 2)
-#		values = round((4.6-5)/(2.2/math.sqrt(20)), 2)
-#		if values <= distribution:
-#			flag = False
-#		else:
-#			flag = True
-#		list = [distribution, values, flag]
-#		print list
-#		return list
-		de = t.ppf(0.95, 19)
+		average = 4.6
+		s = 2.2
+		de = t.ppf(0.975, 19)
 		print de
-		result = (4.6 - 5) / (2.2 / np.sqrt(20))
-		if result >= de:
-			print [round(19, 2), round(result, 2), True]
-			return [round(19, 2), round(result, 2), True]
-		else:
+		result = (average - 5) / (s / np.sqrt(20))
+		if result <=  -de:
 			print [round(19, 2), round(result, 2), False]
 			return [round(19, 2), round(result, 2), False]
+		else:
+			print [round(19, 2), round(result, 2), True]
+			return [round(19, 2), round(result, 2), True]
 
 
 if __name__ == '__main__':

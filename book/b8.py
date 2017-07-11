@@ -71,7 +71,12 @@ class Solution3():
 			print [result, True]
 			return [result, True]
 
+class Solution4():
+	def solve(self):
+		de = stats.ksone.isf(0.1, 10)
+#		de1 = stats.kstwobign.isf(0.1, 10)
+		print de
 
 if __name__ == '__main__':
-	s = Solution1()
+	s = Solution4()
 	s.solve()

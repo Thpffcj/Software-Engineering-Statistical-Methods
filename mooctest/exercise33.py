@@ -48,13 +48,27 @@ import numpy as np
 from scipy.stats import t
 
 class Solution():
-    def solve(self):
-        de=t.ppf(0.05,50)
-        result=(1.1-0)/(4.9/(np.sqrt(51)))
-        if de<=result:
-            return [round(50,2),round(result,2),True]
-        else:
-            return [round(50,2),round(result,2),False]
+	def solve(self):
+		m = 1.1
+		s = 4.9
+		de = t.ppf(0.95,50)
+		result = 1.1/(s/(np.sqrt(51)))
+		if result <= -de:
+			print [round(50,2),round(result,2),False]
+			return [round(50,2),round(result,2),False]
+		else:
+			print [round(50, 2), round(result, 2), True]
+			return [round(50,2),round(result,2),True]
+
+class Solution1():
+	def solve(self):
+		n = 51
+		std = 4.9
+		mean = 1.1
+		t_value = t.isf(0.025, n - 1)
+		stat_value = mean / (std / np.sqrt(n))
+		print [round(n - 1, 2), round(stat_value, 2), not stat_value <= -t_value]
+		return [round(n - 1, 2), round(stat_value, 2), not stat_value <= -t_value]
 
 if __name__ == '__main__':
 	s = Solution()

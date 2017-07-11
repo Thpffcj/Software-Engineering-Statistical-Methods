@@ -19,13 +19,10 @@ import numpy as np
 
 class Solution():
 	def solve(self):
-#		de = t.ppf(0.95, 42)
-#		s = np.sqrt(21*45.1+21*26.4)/42
-#		values = (52.1-45.1)/(np.sqrt(s)*np.sqrt(1/22+1/22))
 		mean = 52.1-27.1
-		de = t.ppf(0.95, 21)
+		de = t.ppf(0.975, 21)
 		s = np.sqrt(45.1**2+26.4**2)
-		values = (mean-0)  / (s / np.sqrt(22))
+		values = mean / (s / np.sqrt(22))
 		print de
 		print values
 		if(values>de or values<-de):

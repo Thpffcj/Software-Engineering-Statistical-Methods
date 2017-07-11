@@ -17,8 +17,14 @@ import numpy as np
 
 class Solution():
 	def solve(self):
-		de = norm.ppf(0.975)
-		print de
+		de1 = norm.ppf(0.90)
+		de2 = norm.ppf(0.975)
+		print de1, de2
+		s = 94.0
+		m = 40.0
+		n = ((de1+de2)*s/m) ** 2 *2
+		print int(n)
+		return int(n)
 
 if __name__ == '__main__':
     s = Solution()
